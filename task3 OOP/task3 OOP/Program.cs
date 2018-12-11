@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NLog;
+using NLog.Fluent;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace task3_OOP
     {
         static void Main(string[] args)
         {
-            
+
             Dog Kollie = new Dog(9.33f, "Tom");
             Console.WriteLine(Kollie.Name);
             Console.WriteLine();
@@ -42,8 +44,32 @@ namespace task3_OOP
             Console.WriteLine("Sorted elements: ");
             foreach (string element in animals)
                 Console.WriteLine(element);
+            Console.WriteLine();
+
+            try
+            {
+                int x = 5;
+                int y = x / 0;
+                Console.WriteLine($"Результат: {y}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Исключение: {ex.Message}");
+                Console.WriteLine($"Метод: {ex.TargetSite}");
+            }
 
 
+
+            Logger logger = LogManager.GetCurrentClassLogger();
+
+            Log.Trace("trace message");
+            Log.Debug("debug message");
+            Log.Info("info message");
+            Log.Warn("warn message");
+            Log.Error("error message");
+            Log.Fatal("fatal message");
+
+            
 
             Console.ReadKey();
         }
